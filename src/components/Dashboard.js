@@ -18,10 +18,10 @@ function Dashboard() {
     const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
-        getAdminData();
+        dashboardData();
     }, []);
 
-    const getAdminData = async () => {
+    const dashboardData = async () => {
         const response = await axios.get(API_URL);
         setUsersData(response?.data);
     }
@@ -98,10 +98,10 @@ function Dashboard() {
     };
     const filteredUsers = usersData.filter((user) => {
         if (searchQuery.trim() === '') {
-            return true; // Show all data if search query is empty
+            return true; // here im returning true if input field is empty
         }
 
-        const query = searchQuery.toLowerCase();
+        const query = searchQuery.toLowerCase(); // to avoid issues with upper and lowercase inputes
         return (
             user.name.toLowerCase().includes(query) ||
             user.email.toLowerCase().includes(query) ||
