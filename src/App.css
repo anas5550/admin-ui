@@ -1,0 +1,49 @@
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+
+.pagination_numbers {
+    color: white;
+    margin: 3px;
+    background: lightgray;
+    padding: 3px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.active_page {
+    background: gray !important;
+    /* color: black; */
+}
+
+.disable_prev {
+    display: none;
+}
+
+.delete:hover {
+    color: red;
+    transform: scale(1.4);
+}
+
+.edit:hover {
+    color: green;
+    transform: scale(1.4);
+}
+
+.selected-row {
+    background-color: gray;
+    color: white;
+}
+
+.unselected-row {
+    background-color: white;
+}
+
+
+/* .checkbox {
+    border: 1px solid black;
+    display: block;
+} */
