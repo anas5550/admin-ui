@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Table } from '@mantine/core';
 import axios from 'axios';
 import { Checkbox, Modal, Button, Group, Input, Badge } from '@mantine/core';
-import { Colors } from '../constants/contanst';
+import { Colors, API_URL } from '../constants/contanst';
 import { IconCaretLeft, IconCaretRight, IconTrash, IconEdit, IconAt, IconUserSquareRounded, IconTool } from '@tabler/icons-react';
 import { useDisclosure } from '@mantine/hooks';
 
@@ -19,12 +19,11 @@ function Dashboard() {
 
     useEffect(() => {
         getAdminData();
-    }, [page]); // here im reloading the component whenever the Page changes
+    }, []);
 
     const getAdminData = async () => {
-        const response = await axios.get("https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json");
+        const response = await axios.get(API_URL);
         setUsersData(response?.data);
-        // console.log(response.data);
     }
 
     const handlePagination = (selectedPage) => {

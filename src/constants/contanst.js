@@ -10,4 +10,5 @@ const Colors = {
     gray: `#a2aabc`,
     comment: `#8695b799`,
 };
-export { Colors }
+const API_URL = "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
+export { Colors, API_URL }
