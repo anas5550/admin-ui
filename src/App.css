@@ -42,8 +42,11 @@
     background-color: white;
 }
 
+.arrow {
+    color: green;
+}
 
-/* .checkbox {
-    border: 1px solid black;
-    display: block;
-} */
+.arrow:hover {
+    transform: scale(1.2);
+    color: red;
+}
