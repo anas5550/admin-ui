@@ -99,6 +99,7 @@ function Dashboard() {
                 usersData={usersData}
                 setUsersData={setUsersData}
                 setSelectedUsers={setSelectedUsers}
+                setSelectAll={setSelectAll}
             />
             {/* table ends here */}
 
@@ -109,7 +110,7 @@ function Dashboard() {
                 editedUserData={editedUserData}
                 setEditedUserData={setEditedUserData}
                 openEditModal={openEditModal}
-
+                modalData={modalData}
                 opened={opened}
                 close={close}
             />
@@ -117,11 +118,11 @@ function Dashboard() {
 
             {/* pagination */}
             <Pagination
-                handleSelectedDelete={handleSelectedDelete}
                 page={page}
                 totalPages={totalPages}
                 usersData={usersData}
                 setPage={setPage}
+                handleSelectedDelete={handleSelectedDelete}
             />
             {/* pagination ends here */}
         </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, Button, Input } from '@mantine/core';
 import { IconAt, IconUserSquareRounded, IconTool } from '@tabler/icons-react';
 
-const EditModal = ({ usersData, setUsersData, editedUserData, setEditedUserData, saveEditedData, opened, close }) => {
+const EditModal = ({ usersData, setUsersData, editedUserData, setEditedUserData, opened, close, modalData }) => {
 
     const saveEditedData = () => {
         try {

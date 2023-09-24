@@ -4,7 +4,7 @@ import { Checkbox } from '@mantine/core';
 import { IconTrash, IconEdit, } from '@tabler/icons-react';
 
 
-const DataTable = ({ selectAll, filteredUsers, page, selectedUsers, toggleUserSelection, openEditModal, usersData, setUsersData, setSelectedUsers }) => {
+const DataTable = ({ selectAll, setSelectAll, filteredUsers, page, selectedUsers, openEditModal, usersData, setUsersData, setSelectedUsers }) => {
 
     const deleteUser = (userId) => {
         try {

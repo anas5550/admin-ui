@@ -16,7 +16,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
         <div className="col-md-8">
             <div className='d-flex justify-content-between align-items-center'>
                 <Input
-                    placeholder="Name, Email OR Role"
+                    placeholder="Search with: User ID, Name, Email OR Role"
                     className='w-100'
                     value={searchQuery}
                     onChange={handleSearchChange}
