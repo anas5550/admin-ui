@@ -1,7 +1,15 @@
 import React from 'react';
 import { Input } from '@mantine/core';
 
-const SearchBar = ({ searchQuery, handleSearchChange }) => {
+const SearchBar = ({ searchQuery, setSearchQuery }) => {
+
+    const handleSearchChange = (e) => {
+        try {
+            setSearchQuery(e.target.value);
+        } catch (err) {
+            console.log('error in handleSearchChange');
+        }
+    };
 
 
     return (

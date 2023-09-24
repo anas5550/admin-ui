@@ -2,7 +2,21 @@ import React from 'react';
 import { Modal, Button, Input } from '@mantine/core';
 import { IconAt, IconUserSquareRounded, IconTool } from '@tabler/icons-react';
 
-const EditModal = ({ editedUserData, setEditedUserData, saveEditedData, opened, close }) => {
+const EditModal = ({ usersData, setUsersData, editedUserData, setEditedUserData, saveEditedData, opened, close }) => {
+
+    const saveEditedData = () => {
+        try {
+            const dataIndex = usersData.findIndex(user => user.id === modalData.id);
+            const updatedUsersData = [...usersData];
+            updatedUsersData[dataIndex] = editedUserData;
+            setUsersData(updatedUsersData);
+            setEditedUserData(null);
+            close();
+        } catch (err) {
+            console.log('error in saveEditedData');
+        }
+    };
+
     return (
         <Modal opened={opened} onClose={close} title="Edit">
             {editedUserData && (

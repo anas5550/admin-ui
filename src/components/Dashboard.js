@@ -5,7 +5,7 @@ import { Badge } from '@mantine/core';
 import { API_URL } from '../constants/contanst';
 import { useDisclosure } from '@mantine/hooks';
 import DataTable from './DataTable';
-import EditModal from './EditModal'
+import EditModal from './EditModal';
 
 
 //components
@@ -45,40 +45,6 @@ function Dashboard() {
         }
     };
 
-    const saveEditedData = () => {
-        try {
-            const dataIndex = usersData.findIndex(user => user.id === modalData.id);
-            const updatedUsersData = [...usersData];
-            updatedUsersData[dataIndex] = editedUserData;
-            setUsersData(updatedUsersData);
-            setEditedUserData(null);
-            close();
-        } catch (err) {
-            console.log('error in saveEditedData');
-        }
-    };
-
-    const deleteUser = (userId) => {
-        try {
-            const updatedUsersData = usersData.filter(user => user.id !== userId);
-            setUsersData(updatedUsersData);
-        } catch (err) {
-            console.log('error in deleteUser');
-        }
-    };
-
-    const toggleUserSelection = (userId) => {
-        try {
-            if (selectedUsers.includes(userId)) {
-                setSelectedUsers(selectedUsers.filter(id => id !== userId));
-            } else {
-                setSelectedUsers([...selectedUsers, userId]);
-            }
-        } catch (err) {
-            console.log('error in toggleUserSelection');
-        }
-    };
-
     const handleSelectedDelete = () => {
         try {
             const updatedUsersData = usersData.filter(user => !selectedUsers.includes(user.id));
@@ -88,28 +54,6 @@ function Dashboard() {
             console.log('error in handleSelectedDelete');
         }
 
-    };
-
-    const toggleSelectAll = () => {
-        try {
-            if (selectAll) {
-                setSelectedUsers([]);
-            } else {
-                const allUserIds = usersData.map(user => user.id);
-                setSelectedUsers(allUserIds);
-            }
-            setSelectAll(!selectAll);
-        } catch (err) {
-            console.log('error in toggleUserSelection');
-        }
-    };
-
-    const handleSearchChange = (e) => {
-        try {
-            setSearchQuery(e.target.value);
-        } catch (err) {
-            console.log('error in toggleUserSelection');
-        }
     };
 
     const filteredUsers = usersData.filter((user) => {
@@ -126,12 +70,12 @@ function Dashboard() {
                 user.role.toLowerCase().includes(query)
             );
         } catch (err) {
-            console.log('error in toggleUserSelection');
+            console.log('error in filteredUsers');
         }
 
     });
 
-    const itemsPerPage = 10; //  items per page
+    const itemsPerPage = 10;
     const totalPages = Math.ceil(filteredUsers.length / itemsPerPage);
 
     return (
@@ -139,7 +83,7 @@ function Dashboard() {
             <div className="row">
 
                 {/* Search Bar */}
-                <SearchBar searchQuery={searchQuery} handleSearchChange={handleSearchChange} />
+                <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
 
                 <div className="col-md-4">
                     <h4 className='text-end'> <Badge color="teal" size="xl">Total Users : {usersData?.length || 0}</Badge></h4>
@@ -148,21 +92,22 @@ function Dashboard() {
             {/* This is the table from where all data is coming */}
             <DataTable
                 selectAll={selectAll}
-                toggleSelectAll={toggleSelectAll}
                 filteredUsers={filteredUsers}
                 page={page}
                 selectedUsers={selectedUsers}
-                toggleUserSelection={toggleUserSelection}
                 openEditModal={openEditModal}
-                deleteUser={deleteUser}
+                usersData={usersData}
+                setUsersData={setUsersData}
+                setSelectedUsers={setSelectedUsers}
             />
             {/* table ends here */}
 
             {/* edit modal  */}
             <EditModal
+                usersData={usersData}
+                setUsersData={setUsersData}
                 editedUserData={editedUserData}
                 setEditedUserData={setEditedUserData}
-                saveEditedData={saveEditedData}
                 openEditModal={openEditModal}
 
                 opened={opened}

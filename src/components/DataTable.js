@@ -4,7 +4,44 @@ import { Checkbox } from '@mantine/core';
 import { IconTrash, IconEdit, } from '@tabler/icons-react';
 
 
-const DataTable = ({ selectAll, toggleSelectAll, filteredUsers, page, selectedUsers, toggleUserSelection, openEditModal, deleteUser }) => {
+const DataTable = ({ selectAll, filteredUsers, page, selectedUsers, toggleUserSelection, openEditModal, usersData, setUsersData, setSelectedUsers }) => {
+
+    const deleteUser = (userId) => {
+        try {
+            const updatedUsersData = usersData.filter(user => user.id !== userId);
+            setUsersData(updatedUsersData);
+        } catch (err) {
+            console.log('error in deleteUser');
+        }
+    };
+
+    const toggleUserSelection = (userId) => {
+        try {
+            if (selectedUsers.includes(userId)) {
+                setSelectedUsers(selectedUsers.filter(id => id !== userId));
+            } else {
+                setSelectedUsers([...selectedUsers, userId]);
+            }
+        } catch (err) {
+            console.log('error in toggleUserSelection');
+        }
+    };
+
+    const toggleSelectAll = () => {
+        try {
+            if (selectAll) {
+                setSelectedUsers([]);
+            } else {
+                const allUserIds = usersData.map(user => user.id);
+                setSelectedUsers(allUserIds);
+            }
+            setSelectAll(!selectAll);
+        } catch (err) {
+            console.log('error in toggleSelectAll');
+        }
+    };
+
+
 
     const rows = filteredUsers.slice(page * 10 - 10, page * 10).map((user) => (
         <tr key={user.id} className={selectedUsers.includes(user.id) ? 'selected-row' : 'unselected-row'}>
